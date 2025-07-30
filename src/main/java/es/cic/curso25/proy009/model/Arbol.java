@@ -3,6 +3,8 @@ package es.cic.curso25.proy009.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Arbol {
 
@@ -12,6 +14,7 @@ public class Arbol {
 
     private String especie;
 
+    
     @OneToMany(mappedBy = "arbol", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE })
     private List<Rama> ramas;
 
@@ -49,5 +52,11 @@ public class Arbol {
         this.ramas = ramas;
     }
 
-    // hashCode, equals y toString...
+    @Override
+    public String toString() {
+        return "Arbol [id=" + id + ", especie=" + especie + ", ramasSIZE=" + ramas.size() + "]";
+    }
+
+    
+    
 }
